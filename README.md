@@ -19,7 +19,7 @@
 
 ## 📊 Estimation Models
 
-Curious about traditional software engineering effort estimations for this project? Check out the [COCOMO Calculations](./COCOMO.md) document to see Basic, Intermediate, and Detailed estimations based on the project's lines of code.
+Curious about time tested software engineering estimates for this project? Check out the [COCOMO Calculations](./COCOMO.md) document to see Basic, Intermediate, and Detailed estimations based on the project's lines of code.
 
 ## 🚀 Running Locally
 
