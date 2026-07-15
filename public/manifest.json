@@ -1,0 +1,17 @@
+{
+  "name": "Focus Master",
+  "short_name": "Focus",
+  "description": "A game to increase your focus with levels.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
