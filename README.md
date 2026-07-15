@@ -17,6 +17,10 @@
 3. Be careful—tapping the wrong number adds a **3-second penalty** to your time!
 4. If you take too long to complete a level, it's Game Over!
 
+## 📊 Estimation Models
+
+Curious about traditional software engineering effort estimations for this project? Check out the [COCOMO Calculations](file:///home/cyberian/projects/focus-master/COCOMO.md) document to see Basic, Intermediate, and Detailed estimations based on the project's lines of code.
+
 ## 🚀 Running Locally
 
 This project is built using vanilla JavaScript and Vite.
