@@ -1,4 +1,5 @@
 import './style.css';
+import { SafeStorage } from './storage.js';
 
 // DOM Elements
 const screens = {
@@ -47,7 +48,7 @@ let timerInterval = null;
 let shuffleInterval = null;
 let numbers = [];
 
-let maxUnlockedLevel = parseInt(localStorage.getItem('focusMaster_unlockedLevel')) || 1;
+let maxUnlockedLevel = parseInt(SafeStorage.getItem('focusMaster_unlockedLevel')) || 1;
 
 if (maxUnlockedLevel > 1) {
   btns.start.textContent = `Continue Level ${maxUnlockedLevel}`;
@@ -214,14 +215,14 @@ function handleLevelComplete() {
   const nextLevel = currentLevel + 1;
   if (nextLevel <= LEVELS.length && nextLevel > maxUnlockedLevel) {
     maxUnlockedLevel = nextLevel;
-    localStorage.setItem('focusMaster_unlockedLevel', maxUnlockedLevel);
+    SafeStorage.setItem('focusMaster_unlockedLevel', maxUnlockedLevel);
   }
   
   // Save best time
   const bestTimeKey = `focusMaster_bestTime_lvl_${currentLevel}`;
-  const bestTime = localStorage.getItem(bestTimeKey);
+  const bestTime = SafeStorage.getItem(bestTimeKey);
   if (!bestTime || parseFloat(finalTime) < parseFloat(bestTime)) {
-    localStorage.setItem(bestTimeKey, finalTime);
+    SafeStorage.setItem(bestTimeKey, finalTime);
   }
   
   showScreen('levelUp');
