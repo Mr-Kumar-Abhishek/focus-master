@@ -47,10 +47,16 @@ let timerInterval = null;
 let shuffleInterval = null;
 let numbers = [];
 
+let maxUnlockedLevel = parseInt(localStorage.getItem('focusMaster_unlockedLevel')) || 1;
+
+if (maxUnlockedLevel > 1) {
+  btns.start.textContent = `Continue Level ${maxUnlockedLevel}`;
+}
+
 // Events
-btns.start.addEventListener('click', () => initGame(1));
+btns.start.addEventListener('click', () => initGame(maxUnlockedLevel));
 btns.nextLevel.addEventListener('click', () => initGame(currentLevel + 1));
-btns.restart.addEventListener('click', () => initGame(1));
+btns.restart.addEventListener('click', () => initGame(currentLevel));
 
 function showScreen(screenName) {
   Object.values(screens).forEach(s => s.classList.remove('active'));
@@ -203,6 +209,20 @@ function handleLevelComplete() {
   
   const finalTime = ((Date.now() - startTime) / 1000).toFixed(2);
   levelTimeDisplay.textContent = finalTime;
+  
+  // Save progress to localStorage
+  const nextLevel = currentLevel + 1;
+  if (nextLevel <= LEVELS.length && nextLevel > maxUnlockedLevel) {
+    maxUnlockedLevel = nextLevel;
+    localStorage.setItem('focusMaster_unlockedLevel', maxUnlockedLevel);
+  }
+  
+  // Save best time
+  const bestTimeKey = `focusMaster_bestTime_lvl_${currentLevel}`;
+  const bestTime = localStorage.getItem(bestTimeKey);
+  if (!bestTime || parseFloat(finalTime) < parseFloat(bestTime)) {
+    localStorage.setItem(bestTimeKey, finalTime);
+  }
   
   showScreen('levelUp');
 }
