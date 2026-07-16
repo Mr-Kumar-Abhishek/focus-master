@@ -11,6 +11,7 @@ const screens = {
 const header = document.querySelector('header');
 const grid = document.getElementById('grid');
 const timeDisplay = document.getElementById('time-display');
+const maxTimeDisplay = document.getElementById('max-time-display');
 const levelDisplay = document.getElementById('level-display');
 const targetDisplay = document.querySelector('#target-number span');
 const levelTimeDisplay = document.getElementById('level-time');
@@ -68,10 +69,12 @@ function initGame(levelIndex) {
   const config = LEVELS[Math.min(currentLevel - 1, LEVELS.length - 1)];
   const size = config.size;
   maxNumber = size * size;
+  const maxAllowedTime = maxNumber * 2;
   
   levelDisplay.textContent = currentLevel;
   targetDisplay.textContent = currentTarget;
   timeDisplay.textContent = '0.00';
+  maxTimeDisplay.textContent = maxAllowedTime;
   
   generateNumbers(maxNumber);
   renderGrid(config);
@@ -177,7 +180,21 @@ function handleTileClick(e) {
 
 function updateTimer() {
   const elapsed = (Date.now() - startTime) / 1000;
-  timeDisplay.textContent = elapsed.toFixed(2);
+  const maxAllowedTime = maxNumber * 2;
+  
+  if (elapsed >= maxAllowedTime) {
+    timeDisplay.textContent = maxAllowedTime.toFixed(2);
+    triggerGameOver();
+  } else {
+    timeDisplay.textContent = elapsed.toFixed(2);
+  }
+}
+
+function triggerGameOver() {
+  clearInterval(timerInterval);
+  if (shuffleInterval) clearInterval(shuffleInterval);
+  finalLevelDisplay.textContent = currentLevel;
+  showScreen('gameOver');
 }
 
 function handleLevelComplete() {
@@ -187,16 +204,7 @@ function handleLevelComplete() {
   const finalTime = ((Date.now() - startTime) / 1000).toFixed(2);
   levelTimeDisplay.textContent = finalTime;
   
-  // Decide if game over or level up
-  // Let's say if they took more than (maxNumber * 2) seconds, they fail
-  const maxAllowedTime = maxNumber * 2;
-  
-  if (parseFloat(finalTime) > maxAllowedTime) {
-    finalLevelDisplay.textContent = currentLevel;
-    showScreen('gameOver');
-  } else {
-    showScreen('levelUp');
-  }
+  showScreen('levelUp');
 }
 
 // Initial

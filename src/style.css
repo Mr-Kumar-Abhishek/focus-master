@@ -32,6 +32,7 @@ body {
   overflow: hidden;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 #app {
