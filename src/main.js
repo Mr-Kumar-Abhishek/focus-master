@@ -81,7 +81,9 @@ function initGame(levelIndex) {
   levelDisplay.textContent = currentLevel;
   targetDisplay.textContent = currentTarget;
   timeDisplay.textContent = '0.00';
-  maxTimeDisplay.textContent = maxAllowedTime;
+  if (maxTimeDisplay) {
+    maxTimeDisplay.textContent = maxAllowedTime;
+  }
   
   generateNumbers(maxNumber);
   renderGrid(config);
