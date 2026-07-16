@@ -17,9 +17,12 @@
 3. Be careful—tapping the wrong number adds a **3-second penalty** to your time!
 4. If you take too long to complete a level, it's Game Over!
 
-## 📊 Estimation Models
+## 📚 Documentation & Estimation
 
-Curious about time tested software engineering estimates for this project? Check out the [COCOMO Calculations](./COCOMO.md) document to see Basic, Intermediate, and Detailed estimations based on the project's lines of code.
+To understand the architecture and design of this project in detail, please refer to the following documents:
+- [Game Design Document (GDD)](./GDD.md): Details the core mechanics, level progression, and visual style.
+- [Software Requirements Specification (SRS)](./SRS.md): Outlines the functional and non-functional technical requirements.
+- [COCOMO Calculations](./COCOMO.md): Time tested software engineering estimates based on the project's lines of code.
 
 ## 🚀 Running Locally
 
