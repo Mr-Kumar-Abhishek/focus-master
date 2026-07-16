@@ -56,4 +56,4 @@ jobs:
           unzip butler.zip
           chmod +x butler
           echo "Pushing to itch.io..."
-          ./butler push dist mr-kumar-abhishek/focus-master:html5
+          ./butler push dist mr-kumar-abhishek/focus-master:web
